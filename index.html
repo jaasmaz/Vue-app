@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./style.css">
+  <title>Vue Application</title>
+</head>
+
+<body>
+  <div class="container" id="app">
+    <!-- Conditional Rendering (will add or Remove El from DOM)-->
+    <h1 v-if="inStock > 0">{{product}} is in Stock</h1>
+    <h1 v-else>{{product}} is out of Stock</h1>
+    
+    <!-- Using  V-show for frequent hide show -->
+    <h3 v-show="inStock > 0 && inStock < 20">{{product}} is Almost Gone</h3>
+
+    <!-- Attribute Binding -->
+    <img class="img" :src="image" alt="">
+
+    <span>Cart({{cart}})</span>
+
+    <!-- Event Handling -->
+    <button @click="addToCart">Add</button>
+
+    <!-- List Rendering -->
+    <ul>
+      <li v-for="product of products" :key="product.id">
+        <!-- update image on mouse hover -->
+        <p class="link" @mouseover="updateImage(product.avatar)">{{ product.id }} {{ product.first_name }} {{product.last_name }}</p>
+        <span v-if="product.id === 1"> -- Lead</span>
+      </li>
+    </ul>
+    <h2>Total products: {{totalproducts}}</h2>
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
